@@ -1,17 +1,44 @@
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-# https://maven.apache.org/wrapper/#usage-without-binary-jar
-.mvn/wrapper/maven-wrapper.jar
+# Compiled class files
+*.class
 
-# Eclipse m2e generated files
-# Eclipse Core
+# Log files
+*.log
+logs/
+
+# Package files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+
+# Maven
+target/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
 .project
-# JDT-specific (Eclipse Java Development Tools)
 .classpath
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Download
+download/
+
+# MinIO data
+minio-data/
+
+# ES data
+es-data/

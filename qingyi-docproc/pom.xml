@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.qingyi.helper</groupId>
+        <artifactId>qingyi-helper</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>qingyi-docproc</artifactId>
+    <packaging>pom</packaging>
+    <name>QingYiHelper - DocProc</name>
+    <description>多模态文档处理引擎</description>
+
+    <modules>
+        <module>qingyi-docproc-api</module>
+        <module>qingyi-docproc-pdf</module>
+        <module>qingyi-docproc-docx</module>
+        <module>qingyi-docproc-markdown</module>
+        <module>qingyi-docproc-image</module>
+        <module>qingyi-docproc-audio</module>
+        <module>qingyi-docproc-video</module>
+        <module>qingyi-docproc-formula</module>
+        <module>qingyi-docproc-chunker</module>
+        <module>qingyi-docproc-embedding</module>
+    </modules>
+</project>

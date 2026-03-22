@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.qingyi.helper</groupId>
+        <artifactId>qingyi-helper</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>qingyi-rag</artifactId>
+    <name>QingYiHelper - RAG</name>
+    <description>RAG引擎：Embedding服务、混合检索、重排序、Prompt管理</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.qingyi.helper</groupId>
+            <artifactId>qingyi-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.qingyi.helper</groupId>
+            <artifactId>qingyi-agent-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.qingyi.helper</groupId>
+            <artifactId>qingyi-agent-orchestrator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.qingyi.helper</groupId>
+            <artifactId>qingyi-agent-intent</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.qingyi.helper</groupId>
+            <artifactId>qingyi-agent-query</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.qingyi.helper</groupId>
+            <artifactId>qingyi-agent-retrieval</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.qingyi.helper</groupId>
+            <artifactId>qingyi-agent-generation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.qingyi.helper</groupId>
+            <artifactId>qingyi-agent-quality</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.qingyi.helper</groupId>
+            <artifactId>qingyi-docproc-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.qingyi.helper</groupId>
+            <artifactId>qingyi-docproc-embedding</artifactId>
+        </dependency>
+
+        <!-- Spring AI -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-openai-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- Elasticsearch -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+        </dependency>
+
+        <!-- Redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+</project>
