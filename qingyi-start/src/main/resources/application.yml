@@ -93,6 +93,13 @@ spring.ai:
       options:
         model: ${EMBEDDING_MODEL:text-embedding-ada-002}
 
+# QingYi Auth
+qingyi:
+  auth:
+    access-token-expire: 7200
+    refresh-token-expire: 604800
+    jwt-secret: ${JWT_SECRET:qingyi-helper-default-jwt-secret-key-2024-change-in-production}
+
 # Knife4j
 springdoc:
   swagger-ui:

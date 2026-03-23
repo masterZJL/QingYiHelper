@@ -295,6 +295,12 @@
                 <version>${hutool.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
             <!-- Knife4j -->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>

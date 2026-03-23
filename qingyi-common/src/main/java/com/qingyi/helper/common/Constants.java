@@ -1,4 +1,4 @@
-package com.qingyi.helper;
+package com.qingyi.helper.common;
 
 /**
  * QingYiHelper - 企业级智能知识库问答平台
