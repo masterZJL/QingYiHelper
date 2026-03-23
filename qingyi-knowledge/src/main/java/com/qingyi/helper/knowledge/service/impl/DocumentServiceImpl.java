@@ -11,6 +11,7 @@ import com.qingyi.helper.common.entity.PageResult;
 import com.qingyi.helper.knowledge.entity.DocumentEntity;
 import com.qingyi.helper.knowledge.mapper.DocumentMapper;
 import com.qingyi.helper.knowledge.service.DocumentService;
+import com.qingyi.helper.mq.message.DocumentProcessMessage;
 import com.qingyi.helper.mq.producer.DocumentProcessProducer;
 import io.minio.*;
 import lombok.RequiredArgsConstructor;
@@ -97,7 +98,16 @@ public class DocumentServiceImpl extends ServiceImpl<DocumentMapper, DocumentEnt
         this.save(document);
 
         // 4. 发送 MQ 消息，触发异步文档处理
-        documentProcessProducer.sendParseMessage(document);
+        DocumentProcessMessage message = DocumentProcessMessage.builder()
+                .documentId(document.getId())
+                .knowledgeBaseId(document.getKnowledgeBaseId())
+                .fileName(document.getFileName())
+                .filePath(document.getFilePath())
+                .fileType(document.getFileType())
+                .mediaType(document.getMediaType())
+                .retryCount(0)
+                .build();
+        documentProcessProducer.sendParseMessage(message);
 
         log.info("文档上传成功: id={}, fileName={}, kbId={}, tenantId={}",
                 document.getId(), originalFilename, knowledgeBaseId, tenantId);
@@ -142,8 +152,16 @@ public class DocumentServiceImpl extends ServiceImpl<DocumentMapper, DocumentEnt
         document.setParseProgress(0);
         document.setErrorMsg(null);
         this.updateById(document);
-
-        documentProcessProducer.sendParseMessage(document);
+        DocumentProcessMessage message = DocumentProcessMessage.builder()
+                .documentId(document.getId())
+                .knowledgeBaseId(document.getKnowledgeBaseId())
+                .fileName(document.getFileName())
+                .filePath(document.getFilePath())
+                .fileType(document.getFileType())
+                .mediaType(document.getMediaType())
+                .retryCount(0)
+                .build();
+        documentProcessProducer.sendParseMessage(message);
         log.info("重试文档处理: id={}", documentId);
     }
 

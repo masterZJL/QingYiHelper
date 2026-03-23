@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qingyi.helper.common.BizException;
 import com.qingyi.helper.common.Constants;
 import com.qingyi.helper.common.ErrorCode;
-import com.qingyi.helper.knowledge.entity.DocumentEntity;
 import com.qingyi.helper.mq.message.DocumentProcessMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,32 +30,23 @@ public class DocumentProcessProducer {
     /**
      * 发送文档解析消息
      */
-    public void sendParseMessage(DocumentEntity document) {
-        DocumentProcessMessage message = DocumentProcessMessage.builder()
-                .documentId(document.getId())
-                .knowledgeBaseId(document.getKnowledgeBaseId())
-                .fileName(document.getFileName())
-                .filePath(document.getFilePath())
-                .fileType(document.getFileType())
-                .mediaType(document.getMediaType())
-                .retryCount(0)
-                .build();
+    public void sendParseMessage(DocumentProcessMessage message) {
 
         try {
             String json = objectMapper.writeValueAsString(message);
 
             // Tag = 文件类型，Key = documentId
             Message<String> mqMsg = MessageBuilder.withPayload(json)
-                    .setHeader("KEYS", document.getId().toString())
+                    .setHeader("KEYS", message.getDocumentId().toString())
                     .build();
 
             SendResult result = rocketMQTemplate.syncSend(
-                    Constants.DOC_PARSE_TOPIC + ":" + document.getFileType(),
+                    Constants.DOC_PARSE_TOPIC + ":" + message.getFileType(),
                     mqMsg
             );
 
             log.info("发送文档解析消息: docId={}, tag={}, result={}",
-                    document.getId(), document.getFileType(), result.getSendStatus());
+                    message.getDocumentId(), message.getFileType(), result.getSendStatus());
         } catch (JsonProcessingException e) {
             log.error("消息序列化失败: {}", e.getMessage());
             throw new BizException(ErrorCode.MQ_SEND_FAILED);
